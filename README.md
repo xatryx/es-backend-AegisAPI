@@ -147,10 +147,10 @@ SUPABASE_URL=Your_URL_String
 SUPABASE_KEY=Your_KEY_String
 ```
 
-Now, instead of directly executing the code, we will containerize the entire source and initialize it inside as a production ready container. Run this line of code below, take note of the dot at the end of the line (it matters, really).
+Now, instead of directly executing the code, we will containerize the entire source and initialize it inside as a production ready container. Run this line of code below, take note of the dot at the end of the line (it matters, really). Also, makes sure to give `PORT` argument the same value as `PORT` in your `.env` file.
 
 ```bash
-docker build -t backend-aegisapi .
+docker build --build-arg PORT=Your_Preferred_Port -t backend-aegisapi .
 ```
 
 You may start it up now.
