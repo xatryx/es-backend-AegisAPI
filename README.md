@@ -159,7 +159,7 @@ You may start it up now.
 docker-compose up -d
 ```
 
-When it's finished, you will have your bot awakene
+When it's finished, it'll be accessible at the `PORT` you've previously defined above.
 
 ### License
 This project is licensed under GNU General Public License v2.0 only. Please head over to the `COPYING` file for more details.
