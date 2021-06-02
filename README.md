@@ -94,5 +94,72 @@ curl hostname:port/message/87654321?message_neutral_score=35.0&message_abusive_s
 }
 ```
 
+### How-to-use-this
+
+-----
+
+#### 1. Classic Node Deployment
+
+First, clone this repo somewhere into your deployment machine
+
+```bash
+git clone https://github.com/xatryx/es-backend-AegisAPI.git
+```
+
+Then open `es-backend-AegisAPI` folder and create a `.env` file
+```bash
+cd es-backend-AegisAPI
+touch .env
+```
+
+Open the `.env` file with any text editors and here, define this below with your own Supabase URL, and Supabase Service Token.
+```bash
+PORT=Your_Preferred_Port
+SUPABASE_URL=Your_URL_String
+SUPABASE_KEY=Your_KEY_String
+```
+
+Now, fly with the wind !!!
+```bash
+npm run start
+```
+
+-----
+
+#### 2. Docker Deployment
+
+First, clone this repo somewhere into your deployment machine
+
+```bash
+git clone https://github.com/xatryx/es-backend-AegisAPI.git
+```
+
+Then open `es-backend-AegisAPI` folder and create a `.env` file
+```bash
+cd es-backend-AegisAPI
+touch .env
+```
+
+Open the `.env` file with any text editors and here, define this below with your own Supabase URL, and Supabase Service Token.
+```bash
+PORT=Your_Preferred_Port
+SUPABASE_URL=Your_URL_String
+SUPABASE_KEY=Your_KEY_String
+```
+
+Now, instead of directly executing the code, we will containerize the entire source and initialize it inside as a production ready container. Run this line of code below, take note of the dot at the end of the line (it matters, really).
+
+```bash
+docker build -t backend-aegisapi .
+```
+
+You may start it up now.
+
+```bash
+docker-compose up -d
+```
+
+When it's finished, you will have your bot awakene
+
 ### License
 This project is licensed under GNU General Public License v2.0 only. Please head over to the `COPYING` file for more details.
