@@ -4,6 +4,7 @@
   "description": "a simple API to handle communication between anything to our Supabase instance API to isolate the need for dealing with tokens and the lack of support for Python and Kotlin",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
