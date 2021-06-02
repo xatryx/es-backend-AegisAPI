@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+  aegis-api:
+    image: backend-aegisapi
+    working_dir: /usr/es-backend-AegisAPI
+    volumes:
+      - ./:/usr/es-discord-oreonitemanganese
+      - /usr/es-discord-oreonitemanganese/node_modules
+    ports:
+      - 8080:8080
+    command: "npm run start"

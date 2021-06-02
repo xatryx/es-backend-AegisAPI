@@ -1,0 +1,19 @@
+{
+  "name": "es-backend-aegisapi",
+  "version": "0.1.0",
+  "description": "a simple API to handle communication between anything to our Supabase instance API to isolate the need for dealing with tokens and the lack of support for Python and Kotlin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xatryx/es-backend-AegisAPI.git"
+  },
+  "author": "Xatryx",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/xatryx/es-backend-AegisAPI/issues"
+  },
+  "homepage": "https://github.com/xatryx/es-backend-AegisAPI#readme"
+}
