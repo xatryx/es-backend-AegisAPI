@@ -1,8 +1,12 @@
 import config from 'dotenv/config'
 import express from 'express'
+import { createClient } from '@supabase/supabase-js'
 
 const app = express()
 const port = process.env.port || 3333
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.get("/", async (req, res) => {
     res.send("hi honey :)")
