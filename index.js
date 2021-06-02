@@ -8,16 +8,32 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+const guildTokenUpdate = async (guild_id, token) => {
+    const { data, error } = await supabase
+        .from('guilds')
+        .update([{ guild_admin_token: `${token}`}])
+        .eq('guild_id', `${guild_id}`)
+}
+
 app.get("/", async (req, res) => {
     res.send("hi honey :)")
 })
 
 app.get("/guild/:guild_id", async (req, res) => {
-    res.send({
-        "path": `${req.path}`,
-        "guild_id": `${req.params.guild_id}`,
-        "token": `${req.query.token}`
-    })
+    if (req.query.token != null) {
+        guildTokenUpdate(req.params.guild_id, req.query.token)
+        
+        res.send({
+            "path": `${req.path}`,
+            "guild_id": `${req.params.guild_id}`,
+            "token": `${req.query.token}`
+        })
+    } else {
+        res.send({
+            "path": `${req.path}`,
+            "guild_id": `${req.params.guild_id}`
+        })
+    }
 })
 
 app.get("/guild/:guild_id/channel/:channel_id", async (req, res) => {
