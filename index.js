@@ -15,6 +15,15 @@ const guildTokenUpdate = async (guild_id, token) => {
         .eq('guild_id', `${guild_id}`)
 }
 
+const guildChannelsRead = async (guild_id) => {
+    const { data, error } = await supabase
+        .from('channels')
+        .select('channel_id')
+        .eq('guild_id', `${guild_id}`)
+
+    return data
+}
+
 app.get("/", async (req, res) => {
     res.send("hi honey :)")
 })
@@ -22,7 +31,6 @@ app.get("/", async (req, res) => {
 app.get("/guild/:guild_id", async (req, res) => {
     if (req.query.token != null) {
         guildTokenUpdate(req.params.guild_id, req.query.token)
-        
         res.send({
             "path": `${req.path}`,
             "guild_id": `${req.params.guild_id}`,
@@ -34,6 +42,13 @@ app.get("/guild/:guild_id", async (req, res) => {
             "guild_id": `${req.params.guild_id}`
         })
     }
+})
+
+app.get("/guild/:guild_id/channel", async (req, res) => {
+
+    const channels = await guildChannelsRead(req.params.guild_id)
+
+    res.send(channels)
 })
 
 app.get("/guild/:guild_id/channel/:channel_id", async (req, res) => {
