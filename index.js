@@ -33,6 +33,13 @@ const channelMessagesRead = async (channel_id) => {
     return data
 }
 
+const messageScoreUpdate = async (message_id, queries) => {
+    const { data, error } = await supabase
+        .from('messages')
+        .update([{ message_neutral_score: `${queries.message_neutral_score}`, message_abusive_score: `${queries.message_abusive_score}`, message_hate_score: `${queries.message_hate_score}` }])
+        .eq('message_id', `${message_id}`)
+}
+
 app.get("/", async (req, res) => {
     res.send("hi honey :)")
 })
@@ -75,17 +82,22 @@ app.get("/channel/:channel_id/message", async (req, res) => {
     res.send(messages)
 })
 
-app.get("/guild/:guild_id/channel/:channel_id/message/:message_id", async (req, res) => {
-    res.send({
-        "path": `${req.path}`,
-        "guild_id": `${req.params.guild_id}`,
-        "channel_id": `${req.params.channel_id}`,
-        "message_id": `${req.params.message_id}`,
-        "createdAt": `${req.query.created}`,
-        "neutral_score": `${req.query.neutral_score}`,
-        "abuse_score": `${req.query.abuse_score}`,
-        "hate_score": `${req.query.hate_score}`,
-    })
+app.get("/message/:message_id", async (req, res) => {
+    if (req.query != null) {
+        messageScoreUpdate(req.params.message_id, req.query)
+        res.send({
+            "path": `${req.path}`,
+            "message_id": `${req.params.message_id}`,
+            "neutral_score": `${req.query.message_neutral_score}`,
+            "abuse_score": `${req.query.message_abusive_score}`,
+            "hate_score": `${req.query.message_hate_score}`,
+        })
+    } else {
+        res.send({
+            "path": `${req.path}`,
+            "message_id": `${req.params.message_id}`,
+        })
+    }
 })
 
 app.listen(port, () => {
