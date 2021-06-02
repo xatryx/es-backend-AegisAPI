@@ -76,7 +76,7 @@ curl hostname:port/channel/1234567/message
 ]
 ```
 
-#### 4. List channels from a specific `guild_id`
+#### 4.Updates scores of a specific `message_id`
 
 **POST**
 ```
