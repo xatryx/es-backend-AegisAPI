@@ -19,5 +19,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^10.0.0"
-  }
+  },
+  "type": "module"
 }
