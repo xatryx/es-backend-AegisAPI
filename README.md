@@ -54,7 +54,7 @@ curl hostname:port/guild/1234567890/channel
 ]
 ```
 
-#### 3. List channels from a specific `guild_id`
+#### 3. List messages from a specific `channel_id`
 
 **POST**
 ```
@@ -68,10 +68,10 @@ curl hostname:port/channel/1234567/message
         "message_id": "0987654321"
     },
     {
-        "channel_id": "987654321"
+        "message_id": "987654321"
     },
     {
-        "channel_id": "87654321"
+        "message_id": "87654321"
     }
 ]
 ```
