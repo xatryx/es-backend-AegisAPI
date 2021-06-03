@@ -58,7 +58,16 @@ const channelMessagesRead = async (channel_id) => {
 const messageScoreUpdate = async (message_id, queries) => {
     const { data, error } = await supabase
         .from('messages')
-        .update([{ message_neutral_score: `${queries.message_neutral_score}`, message_abusive_score: `${queries.message_abusive_score}`, message_hate_score: `${queries.message_hate_score}` }])
+        .update([{ message_neutral_score: queries.message_neutral_score, message_abusive_score: queries.message_abusive_score, message_hate_score: queries.message_hate_score }])
+        .eq('message_id', `${message_id}`)
+
+    return data
+}
+
+const messageDetailsRead = async (message_id) => {
+    const { data, error } = await supabase
+        .from('messages')
+        .select('*')
         .eq('message_id', `${message_id}`)
 }
 
@@ -111,20 +120,29 @@ app.get("/channel/:channel_id/message", async (req, res) => {
 })
 
 app.get("/message/:message_id", async (req, res) => {
-    if (req.query != null) {
-        messageScoreUpdate(req.params.message_id, req.query)
-        res.send({
-            "path": `${req.path}`,
-            "message_id": `${req.params.message_id}`,
-            "neutral_score": `${req.query.message_neutral_score}`,
-            "abuse_score": `${req.query.message_abusive_score}`,
-            "hate_score": `${req.query.message_hate_score}`,
-        })
-    } else {
-        res.send({
-            "path": `${req.path}`,
-            "message_id": `${req.params.message_id}`,
-        })
+    const message = messageDetailsRead(req.params.message_id)
+    res.send(message)
+})
+
+app.get("/message/:message_id/update", async (req, res) => {
+
+    let counter = 0
+
+    if (req.query.message_neutral_score != null) {
+        counter++
+    }
+
+    if (req.query.message_abusive_score != null) {
+        counter++
+    }
+
+    if (req.query.message_hate_score != null) {
+        counter++
+    }
+
+    if (counter == 3) {
+        const message = messageScoreUpdate(req.params.message_id, req.query)
+        res.send(message)
     }
 })
 
