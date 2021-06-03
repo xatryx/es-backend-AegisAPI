@@ -37,6 +37,15 @@ const guildChannelsRead = async (guild_id) => {
     return data
 }
 
+const channelDetailsRead = async (channel_id) => {
+    const { data, error } = await supabase
+        .from('channels')
+        .select('*')
+        .eq('channel_id', `${channel_id}`)
+
+    return data
+}
+
 const channelMessagesRead = async (channel_id) => {
     const { data, error } = await supabase
         .from('messages')
@@ -89,12 +98,9 @@ app.get("/guild/:guild_id/channel", async (req, res) => {
     res.send(channels)
 })
 
-app.get("/guild/:guild_id/channel/:channel_id", async (req, res) => {
-    res.send({
-        "path": `${req.path}`,
-        "guild_id": `${req.params.guild_id}`,
-        "channel_id": `${req.params.channel_id}`
-    })
+app.get("/channel/:channel_id", async (req, res) => {
+    const channel = await channelDetailsRead(req.params.channel_id)
+    res.send(channel)
 })
 
 app.get("/channel/:channel_id/message", async (req, res) => {
