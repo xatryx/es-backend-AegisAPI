@@ -8,11 +8,24 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const guildTokenUpdate = async (guild_id, token) => {
+const guildTokenUpdate = async (guild_id, oldtoken, newtoken) => {
     const { data, error } = await supabase
         .from('guilds')
-        .update([{ guild_admin_token: `${token}`}])
+        .update([{ guild_admin_token: `${newtoken}`}])
         .eq('guild_id', `${guild_id}`)
+        .eq('guild_admin_token',`${oldtoken}`)
+
+    return data
+}
+
+const guildDetailsRead = async (guild_id, token) => {
+    const { data, error } = await supabase
+        .from('guilds')
+        .select('*')
+        .eq('guild_id', `${guild_id}`)
+        .eq('guild_admin_token',`${token}`)
+
+    return data
 }
 
 const guildChannelsRead = async (guild_id) => {
@@ -45,17 +58,26 @@ app.get("/", async (req, res) => {
 })
 
 app.get("/guild/:guild_id", async (req, res) => {
-    if (req.query.token != null) {
-        guildTokenUpdate(req.params.guild_id, req.query.token)
-        res.send({
-            "path": `${req.path}`,
-            "guild_id": `${req.params.guild_id}`,
-            "token": `${req.query.token}`
-        })
+    
+    const guild = await guildDetailsRead(req.params.guild_id, req.query.token)
+
+    res.send(guild)
+})
+
+app.get("/guild/:guild_id/admin", async (req, res) => {
+    if (req.query.oldtoken != null && req.query.newtoken != null) {
+        const guild = await guildTokenUpdate(req.params.guild_id, req.query.oldtoken, req.query.newtoken)
+
+        if (guild != null) {
+            res.send(guild)
+        } else {
+            res.send({
+                "status": "FAIL"
+            })
+        }
     } else {
         res.send({
-            "path": `${req.path}`,
-            "guild_id": `${req.params.guild_id}`
+            "status": "MISS"
         })
     }
 })
