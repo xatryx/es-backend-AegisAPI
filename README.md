@@ -11,7 +11,7 @@ a simple API that we intentionally make to
 | `/guild/:guild_id` | `:guild_id` | `token` | returns `guild` details of an existing `guild_id` with a matching `token` | a `guild` object, if `token` is not supplied nor found zero matching then it won't |
 | `/guild/:guild_id/admin` | `:guild_id` | `oldtoken`, `newtoken` | updates `guild_admin_token` of an existing `guild_id` with a matching `oldtoken` to a `newtoken` | a `guild` object, if `token` is not supplied nor found zero matching then it won't |
 | `/guild/:guild_id/channel` | `:guild_id` | x | list of `channel`s to a specific `guild_id` | an array of `channel`s |
-| `/guild/:guild_id/channel/:channel_id` | `:guild_id`, `:channel_id` | x | Yet to be decided | a `channel` object |
+| `/channel/:channel_id` | `:channel_id` | x | returns `channel` details of an existing `channel_id` | a `channel` object |
 | `/channel/:channel_id/message` | `:channel_id` | x | list of `message`s to a specific `channel_id` | an array of `messages` |
 | `/message/:message_id` | `:message_id` | `message_neutral_score`, `message_abusive_score`, `message_hate_score` | updates the scores of a specific `message_id` | a `message` object |
 
