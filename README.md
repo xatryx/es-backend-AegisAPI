@@ -13,7 +13,8 @@ a simple API that we intentionally make to
 | `/guild/:guild_id/channel` | `:guild_id` | x | list of `channel`s to a specific `guild_id` | an array of `channel`s |
 | `/channel/:channel_id` | `:channel_id` | x | returns `channel` details of an existing `channel_id` | a `channel` object |
 | `/channel/:channel_id/message` | `:channel_id` | x | list of `message`s to a specific `channel_id` | an array of `messages` |
-| `/message/:message_id` | `:message_id` | `message_neutral_score`, `message_abusive_score`, `message_hate_score` | updates the scores of a specific `message_id` | a `message` object |
+| `/message/:message_id` | `:message_id` | x | returns `message` details of an existing `message_id` | a `message` object |
+| `/message/:message_id/update` | `:message_id` | `message_neutral_score`, `message_abusive_score`, `message_hate_score` | updates the scores of a specific `message_id` | x |
 
 ### Examples
 
@@ -81,17 +82,13 @@ curl hostname:port/channel/1234567/message
 
 **POST**
 ```
-curl hostname:port/message/87654321?message_neutral_score=35.0&message_abusive_score=5.0&message_hate_score=60.0
+curl hostname:port/message/87654321/update?message_neutral_score=35.0&message_abusive_score=5.0&message_hate_score=60.0
 ```
 
 **RESPONSE**
 ```json
 {
-    "path":"/message/87654321",
-    "message_id":"87654321",
-    "message_neutral_score":"35.0",
-    "message_abusive_score":"5.0",
-    "message_hate_score":"60.0"
+    
 }
 ```
 
