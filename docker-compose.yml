@@ -3,20 +3,20 @@ services:
   aegis-api:
     build: ./api
     container_name: aegis-api-service
-    working_dir: /usr/es-backend-AegisAPI
+    working_dir: /usr/es-backend-AegisAPI/api
     volumes:
-      - ./:/usr/es-discord-oreonitemanganese
-      - /usr/es-discord-oreonitemanganese/node_modules
+      - ./api:/usr/es-backend-AegisAPI/api
+      - /usr/es-backend-AegisAPI/api/node_modules
     ports:
       - ${PORT_API}:${PORT_API}
     command: "npm run start"
   tokenizer:
     build: ./tokenizer
     container_name: aegis-api-tokenizer
-    working_dir: /usr/es-backend-AegisAPI
+    working_dir: /usr/es-backend-AegisAPI/tokenizer
     volumes:
-      - ./:/usr/es-discord-oreonitemanganese
-      - /usr/es-discord-oreonitemanganese/node_modules
+      - ./tokenizer:/usr/es-backend-AegisAPI/tokenizer
+      - /usr/es-backend-AegisAPI/tokenizer/node_modules
     ports:
       - ${PORT_TOKENIZER}:${PORT_TOKENIZER}
     command: "npm run start"
