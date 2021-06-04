@@ -33,7 +33,7 @@ SUPABASE_KEY=Your_KEY_String
 
 Copy that file into `/api` directory/
 ```bash
-cp .env /api/.env
+cp .env api/.env
 ```
 
 You may start it up now.
