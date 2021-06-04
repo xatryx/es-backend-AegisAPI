@@ -1,7 +1,8 @@
 version: "3.1"
 services:
   aegis-api:
-    image: backend-aegisapi
+    build: ./api
+    container_name: aegis-api-service
     working_dir: /usr/es-backend-AegisAPI
     volumes:
       - ./:/usr/es-discord-oreonitemanganese
