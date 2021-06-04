@@ -10,6 +10,3 @@ RUN npm install
 
 COPY . .
 
-ARG PORT=3333
-
-EXPOSE $PORT

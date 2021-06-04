@@ -8,5 +8,15 @@ services:
       - ./:/usr/es-discord-oreonitemanganese
       - /usr/es-discord-oreonitemanganese/node_modules
     ports:
-      - ${PORT}:${PORT}
+      - ${PORT_API}:${PORT_API}
+    command: "npm run start"
+  tokenizer:
+    build: ./tokenizer
+    container_name: aegis-api-tokenizer
+    working_dir: /usr/es-backend-AegisAPI
+    volumes:
+      - ./:/usr/es-discord-oreonitemanganese
+      - /usr/es-discord-oreonitemanganese/node_modules
+    ports:
+      - ${PORT_TOKENIZER}:${PORT_TOKENIZER}
     command: "npm run start"
