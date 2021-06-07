@@ -143,6 +143,7 @@ Open the `.env` file with any text editors and here, define this below with your
 PORT=Your_Preferred_Port
 SUPABASE_URL=Your_URL_String
 SUPABASE_KEY=Your_KEY_String
+SCHEMA_NAME=Your_Schema_Name
 ```
 
 Now, instead of directly executing the code, we will containerize the entire source and initialize it inside as a production ready container. Run this line of code below, take note of the dot at the end of the line (it matters, really). Also, makes sure to give `PORT` argument the same value as `PORT` in your `.env` file.
