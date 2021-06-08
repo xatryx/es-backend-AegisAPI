@@ -110,11 +110,12 @@ cd es-backend-AegisAPI
 touch .env
 ```
 
-Open the `.env` file with any text editors and here, define this below with your own Supabase URL, and Supabase Service Token.
+Open the `.env` file with any text editors and here, define this below with your own Supabase URL, and Supabase Service Token, and PostgreSQL Scheme Name.
 ```bash
 PORT=Your_Preferred_Port
 SUPABASE_URL=Your_URL_String
 SUPABASE_KEY=Your_KEY_String
+SCHEMA_NAME=Your_schema_name
 ```
 
 Now, fly with the wind !!!
