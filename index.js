@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 import { PostgrestClient } from '@supabase/postgrest-js'
 
 const app = express()
-const port = process.env.port || 3333
+const port = process.env.port || 8080
 const supabaseUrl = process.env.SUPABASE_URL;
 // const supabaseKey = process.env.SUPABASE_KEY;
 const supabaseSchema = process.env.SCHEMA_NAME;

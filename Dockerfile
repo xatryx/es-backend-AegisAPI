@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # Expose port
-ARG PORT=3333
+ARG PORT=8080
 EXPOSE $PORT
 
 # Run the web service on container startup.
